@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URLShortner</title>
+    <%- include('../includes/header'); %>
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/nav-style.css">
+    <nav class="navbar navbar-light bg-dark homeview-outer-nav" >
+            <div class="homeview-inside" >
+                <h1 class="text-center text-light mb-5">URL Shortener</h1>
+                
+                
+                <form action="/urlShortner/create" method="post">
+                    <input type="hidden" name="_csrf" value="<%= csrftoken %>">
+                    <%if (typeof errMessage != "undefined" ) { %>
+                        <p class="text-danger"><%= errMessage.urlInput %></p>
+                        <% } %>
+                    <input class="form-control mb-4" name="urlInput" type="search" placeholder="Enter link here" aria-label="Search">
+                    <button type="submit" class="btn btn-primary mb-3">Shorten URL</button>
+                </form>
+                <%if (typeof unique_id != "undefined" ) { %>
+                    <div class="bg-light">
+                        localhost:3000/url/<%= unique_id %>
+                    </div>
+                    <% } %>
+                <div></div>
+            </div>
+            
+    </nav>
+      
+</head>
+<body>
+    <%- include('../includes/footer'); %>
+</body>
+</html>
